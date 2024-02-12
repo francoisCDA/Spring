@@ -22,5 +22,12 @@ public class TodosList {
         todolist.add(new Todo("Aperture Sciences","We do what we must because we can", true));
     }
 
+    public Todo getToDoByIndex(int idx) {
+        return todolist.get(idx);
+    }
+    public void changeStatusTodoByIdx(int idx) {
+        getToDoByIndex(idx).setStatus(!getToDoByIndex(idx).isStatus());
+    }
+
 
 }
