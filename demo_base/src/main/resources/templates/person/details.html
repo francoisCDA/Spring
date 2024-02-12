@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Java</title>
+</head>
+<body>
+    <h1>Détails person</h1>
+<hr>
+    <p>Firstname : <span th:text="${firstname}" ></span></p>
+    <p>Lastname : <span th:text="${lastname}" ></span></p>
+
+    <ul>
+        <li th:each="p:${persons}"><span th:text="${p}" ></span></li>
+    </ul>
+
+    <ul th:if="${!void.isEmpty()}">
+        <li th:each="p:${void}"><span th:text="${p}" ></span></li>
+    </ul>
+
+    <ul th:unless="${void.isEmpty()}">
+        <li th:each="p:${void}"><span th:text="${p}" ></span></li>
+    </ul>
+
+</body>
+</html>
