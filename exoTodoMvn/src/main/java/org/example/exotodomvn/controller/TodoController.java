@@ -4,6 +4,7 @@ import org.example.exotodomvn.service.TodosList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -16,7 +17,12 @@ public class TodoController {
         this.todosList = todosList;
     }
 
-    @RequestMapping("todo")
+    @GetMapping
+    public String getMaison(){
+        return "home";
+    }
+
+    @GetMapping("todo")
     public String getTodo(Model model) {
 
         model.addAttribute("oneTodo",todosList.getTodolist().getFirst());
@@ -25,7 +31,7 @@ public class TodoController {
 
     }
 
-    @RequestMapping("todos")
+    @GetMapping("todos")
     public String getTodos(Model model) {
         model.addAttribute("allTodos",todosList.getTodolist());
 
