@@ -37,8 +37,14 @@ public class LapinService {
         return lapins.get(id);
     }
 
-    public void addLapin(Lapin lapin) {
+    private void addLapin(Lapin lapin) {
         lapins.put(lapin.getId(),lapin);
+    }
+
+    public void addLapin(String name, String breed) {
+        if (!name.isBlank() && !name.isEmpty() && !breed.isBlank() && !breed.isEmpty()) {
+            addLapin(Lapin.builder().name(name).breed(breed).build());
+        }
     }
 
 
