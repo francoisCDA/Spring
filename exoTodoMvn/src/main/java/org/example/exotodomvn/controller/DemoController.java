@@ -30,8 +30,9 @@ public class DemoController {
 
     @PostMapping("/demo/lapin/add")
     public String submitLapin(@ModelAttribute("lapin") Lapin lapin ) {
-        Lapin newLapin = Lapin.builder().id(UUID.randomUUID()).name(lapin.getName()).breed(lapin.getBreed()).build();
-        lapinService.addLapin(newLapin);
+       // Lapin newLapin = Lapin.builder().id(UUID.randomUUID()).name(lapin.getName()).breed(lapin.getBreed()).build();
+        lapin.setId(UUID.randomUUID());
+        lapinService.addLapin(lapin);
         return "redirect:/demo/lapins";
 
     }
