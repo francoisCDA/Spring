@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recherche</title>
+    <span th:replace="~{home :: bootstrapimport}"></span>
+</head>
+<body>
+<header>
+    <span th:replace="~{home :: navbar}"></span>
+</header>
+<div class="container">
+    <form method="get" th:action="@{/demo/look}" >
+       <div class="form-group">
+            <label for="search" class="form-label">Race</label>
+            <input type="text" class="form-control" id="search" rows="3"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
+</div>
+
+</body>
+</html>

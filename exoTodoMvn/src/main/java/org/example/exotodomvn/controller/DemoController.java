@@ -58,6 +58,7 @@ public class DemoController {
         return "demopages/pagec";
     }
 
+
     @GetMapping("/demo/look")
     public String showLapin(@RequestParam(value = "name",required = false) String name, Model model ) {
 
@@ -72,9 +73,9 @@ public class DemoController {
         } else {
             return "redirect:/demo/lapins";
         }
-
         return "demopages/error";
     }
+
 
     @GetMapping("/error")
     public String getError() {

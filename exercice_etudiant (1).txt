@@ -1,0 +1,39 @@
+Exercice Etudiant :
+
+On souhaite cree une application web qui va nous permettre de gere des etudiants c'est à dire:
+- Cree un etudiant ( nom, prenom,age, email)
+- Lister tous les etudiants ( nom et prenom )
+- Recherche un etudiants par son nom
+- Voir le detail d'un etudiant
+
+Il nous faudra donc plusieurs pages web (au minimum) :
+- Accueil
+- Inscription
+- Liste des etudiants
+- Détails d'un étudiant
+- Resultat recherche d'un étudiant
+
+On pourra à partir de la page Accueil se rendre sur:
+- la liste des etudiants
+- la page inscription
+- faire une recherche d'un étudiant
+
+Sur la page Inscription il sera possible de:
+- remplir un formaulaire et etre redirige vers la page liste des etudiants
+- revenir a l'accueil
+
+Sur la page liste des etudiants :
+- a cote de chaque etudiants (juste le nom et prenom d'afficher) un lien ou bouton voir détails pour me rendre sur la page voir détails de l'etudiant
+- un lien ou bouton pour revenir à l'accueil
+
+La page detail etudiant :
+- affiche de tous les information d'un etudiant 
+- un bouton ou lien pour revenir à la liste
+- un bouton ou lien pour revenir à l'accueil
+
+La page recherche :
+- Affiche la liste des etudiants trouvées et un bouton ou lien pour voir les détails de l'étudiant.
+OU
+- Affiche aucun résultat trouvé
+
+- un bouton / lien pour revenir à l'accueil
