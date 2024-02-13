@@ -18,11 +18,15 @@ public class LapinService {
 
         Lapin lapinA = Lapin.builder().id(UUID.randomUUID()).name("Bugs Bunny").breed("angora").build();
         Lapin lapinB = Lapin.builder().id(UUID.randomUUID()).name("Roger Rabbit").breed("bélier").build();
-        Lapin lapinC = Lapin.builder().id(UUID.randomUUID()).name("Lapun trois").breed("de laboratoire").build();
+        Lapin lapinC = Lapin.builder().id(UUID.randomUUID()).name("Lapin trois").breed("de laboratoire").build();
+        Lapin lapinD = Lapin.builder().id(UUID.randomUUID()).name("Billy").breed("Vulpis").build();
+        Lapin lapinE = Lapin.builder().id(UUID.randomUUID()).name("Steeve").breed("Géant des Flandres").build();
 
         lapins.put(lapinA.getId(),lapinA);
         lapins.put(lapinB.getId(),lapinB);
         lapins.put(lapinC.getId(),lapinC);
+        lapins.put(lapinD.getId(),lapinD);
+        lapins.put(lapinE.getId(),lapinE);
     }
 
     public List<Lapin> getLapins() {
@@ -33,6 +37,9 @@ public class LapinService {
         return lapins.get(id);
     }
 
+    public void addLapin(Lapin lapin) {
+        lapins.put(lapin.getId(),lapin);
+    }
 
 
 }

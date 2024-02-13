@@ -7,7 +7,9 @@ import org.example.exotodomvn.service.LapinService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.UUID;
 import java.util.List;
@@ -18,10 +20,22 @@ public class DemoController {
 
     private final LapinService lapinService;
 
-    @GetMapping("demo/pagea")
-    public String getPageA() {
+    @GetMapping("demo/lapin/add")
+    public String getPageA(Model model) {
+
+        model.addAttribute("lapin",new Lapin());
+
         return "demopages/pagea";
     }
+
+    @PostMapping("/demo/lapin/add")
+    public String submitLapin(@ModelAttribute("lapin") Lapin lapin ) {
+        Lapin newLapin = Lapin.builder().id(UUID.randomUUID()).name(lapin.getName()).breed(lapin.getBreed()).build();
+        lapinService.addLapin(newLapin);
+        return "redirect:/demo/lapins";
+
+    }
+
 
     @GetMapping("demo/lapins")
     public String getPageB(Model model) {

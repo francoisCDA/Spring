@@ -12,17 +12,18 @@
 
 </head>
 <body>
-    <header >
-        <h1>Welcome to the TodoList Application</h1>
+    <header>
+        <h1>Welcome to the <del>TodoList</del> Lapin Application</h1>
         <th:block th:fragment="navbar">
-        <nav>
-            <a th:href="@{/}"  >Home Page</a>
-            <a th:href="@{/demo/pagea}"  >Page A</a>
-            <a th:href="@{/demo/lapins}"  >Liste lapins</a>
+        <nav class="center">
+            <a class="btn btn-danger" th:href="@{/}"  >Home Page</a>
+            <a class="btn btn-danger" th:href="@{/demo/lapin/add}"  >Ajouter des lapins</a>
+            <a class="btn btn-danger" th:href="@{/demo/lapins}"  >Liste des lapins</a>
 <!--            <a th:href="@{/demo/pagec}"  >Page C</a>-->
         </nav>
-        <img th:src="@{/image/laptop1.jpg}" alt="laptop" />
+
         </th:block>
+        <img th:src="@{/image/laptop1.jpg}" alt="laptop" />
     </header>
 
 

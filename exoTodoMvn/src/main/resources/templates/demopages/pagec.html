@@ -7,11 +7,10 @@
 </head>
 <body>
 <header>
-    <h2>Ma page C</h2>
     <span th:replace="~{home :: navbar}"></span>
 </header>
 <main>
-    <h3>Détail de mon lapin</h3>
+    <h3>Détail du lapin</h3>
     <p>Nom : <span th:text="${lapin.getName()}"></span></p>
     <p>Race : <span th:text="${lapin.getBreed()}"></span></p>
 

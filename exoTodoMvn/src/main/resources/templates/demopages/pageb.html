@@ -7,18 +7,21 @@
 </head>
 <body>
 <header>
-    <h2>Ma page B</h2>
     <span th:replace="~{home :: navbar}"></span>
 </header>
 <main>
 <!--    <div>-->
 <!--        <a th:href="@{/demo/details/{id}(id=${lapin.getId()})}"> détails <span th:text="${lapin.getName()}" ></span> </a>-->
 <!--    </div>-->
+<div class="container">
+<ul class="list-group list-group-flush">
 
-    <div th:each="l:${lapins}" >
+    <li class="list-group-item" th:each="l:${lapins}" >
         <a th:href="@{/demo/details/{id}(id=${l.getId()})}"> détails <span th:text="${l.getName()}"></span> </a>
-    </div>
+    </li>
 
+</ul>
+</div>
 
 
 </main>
