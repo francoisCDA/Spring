@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class LapinService {
@@ -41,11 +42,18 @@ public class LapinService {
         lapins.put(lapin.getId(),lapin);
     }
 
-    public void addLapin(String name, String breed) {
+    public boolean addLapin(String name, String breed) {
         if (!name.isBlank() && !name.isEmpty() && !breed.isBlank() && !breed.isEmpty()) {
-            addLapin(Lapin.builder().name(name).breed(breed).build());
+            addLapin(Lapin.builder().id(UUID.randomUUID()).name(name).breed(breed).build());
+            return true;
         }
+        return false;
     }
 
 
+    public Lapin getLapinByName(String name) {
+
+        return lapins.values().stream().filter( lapin -> lapin.getName().equals(name)).findFirst().orElse(null);
+
+    }
 }

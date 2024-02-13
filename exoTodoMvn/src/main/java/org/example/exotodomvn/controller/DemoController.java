@@ -6,10 +6,7 @@ import org.example.exotodomvn.entity.Lapin;
 import org.example.exotodomvn.service.LapinService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 import java.util.List;
@@ -33,9 +30,10 @@ public class DemoController {
        // Lapin newLapin = Lapin.builder().id(UUID.randomUUID()).name(lapin.getName()).breed(lapin.getBreed()).build();
        // lapin.setId(UUID.randomUUID());
        // lapinService.addLapin(lapin);
-        lapinService.addLapin(lapin.getName(),lapin.getBreed());
-        return "redirect:/demo/lapins";
-
+        if (lapinService.addLapin(lapin.getName(),lapin.getBreed())) {
+            return "redirect:/demo/lapins";
+        }
+        return "demopages/error";
     }
 
 
@@ -60,7 +58,26 @@ public class DemoController {
         return "demopages/pagec";
     }
 
+    @GetMapping("/demo/look")
+    public String showLapin(@RequestParam(value = "name",required = false) String name, Model model ) {
 
+        if (name != null) {
+            System.out.println(name);
+            Lapin lapin = lapinService.getLapinByName(name);
 
+            if (lapin != null) {
+                model.addAttribute("lapin",lapin);
+                return "demopages/pagec";
+            }
+        } else {
+            return "redirect:/demo/lapins";
+        }
 
+        return "demopages/error";
+    }
+
+    @GetMapping("/error")
+    public String getError() {
+        return "demopages/error";
+    }
 }
