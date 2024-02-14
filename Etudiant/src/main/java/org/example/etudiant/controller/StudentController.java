@@ -18,12 +18,6 @@ public class StudentController {
 
     private final SpringService<Student> studentService;
 
-//    @Value("${academy.name}")
-//    private final String academyName;
-//
-//    @Value("${academy.contact")
-//    private final String academyMail;
-
     @GetMapping("/")
     public String accueil(Model model) {
         model.addAttribute("student",new Student());
@@ -54,10 +48,16 @@ public class StudentController {
 
     @PostMapping("/registration")
     public String enregistration(@ModelAttribute("student") Student student) {
-
-        if (studentService.save(student)){
+        System.out.println(student);
+        if (student.getId() == null) {
+            if (studentService.save(student)){
+                return "redirect:/students";
+            }
+        } else {
+          studentService.update(student);
             return "redirect:/students";
         }
+
         return "error/error";
     }
 
@@ -74,7 +74,18 @@ public class StudentController {
         return "student/search";
     }
 
+    @GetMapping("delete/{id}")
+    public String delete(@PathVariable UUID id) {
+        studentService.delete(id);
+        return "redirect:/students";
+    }
 
+    @GetMapping("edit/{id}")
+    public String edit(@PathVariable UUID id,Model model) {
+        Student student = studentService.getById(id);
+        model.addAttribute("student",student);
+        return "student/registration";
+    }
 
 
     @GetMapping("/error")

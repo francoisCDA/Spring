@@ -13,4 +13,8 @@ public interface SpringService<T> {
 
 
     List<T> searchByName(String search);
+
+    boolean delete(UUID id);
+
+    void update(T student);
 }

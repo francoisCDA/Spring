@@ -51,9 +51,26 @@ public class StudentService implements SpringService<Student> {
         return etudiants.values().stream().filter( student -> student.getLastName().toLowerCase().contains(name.toLowerCase()) || student.getFirstName().toLowerCase().contains(name.toLowerCase()) ).toList();
     }
 
+    @Override
+    public boolean delete(UUID id) {
+        Student student = etudiants.remove(id);
+        return student != null ;
+    }
+
+    @Override
+    public void update(Student student) {
+        Student currentStudent = etudiants.get(student.getId());
+        if (currentStudent != null) {
+            etudiants.put(student.getId(),student);
+        } else {
+            student = null;
+        }
+    }
+
     public Student getById(UUID id) {
         return etudiants.get(id);
     }
+
 
 
 

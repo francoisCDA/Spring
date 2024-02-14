@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("student/api/v1")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class StudentRestController {
 
@@ -26,9 +26,23 @@ public class StudentRestController {
         return studentService.getById(id);
     }
 
-    @PostMapping("add/")
-    public void registration(){
-
+    @PostMapping
+    public Student registration(@RequestBody Student student){
+        studentService.save(student);
+        return student;
     }
+
+    @PutMapping()
+    public Student putpatch(@RequestBody Student student) {
+        studentService.update(student);
+        return student;
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable UUID id) {
+        return studentService.delete(id);
+    }
+
+
 
 }
