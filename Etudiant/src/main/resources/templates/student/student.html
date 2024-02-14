@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Etudiant</title>
+    <span th:replace="~{index :: css }" ></span>
 </head>
 <body>
+    <span th:replace="~{index :: tete}"></span>
+    <main>
 
 
 <table>
@@ -28,7 +31,7 @@
 
 </table>
 
-
+    </main>
 
 
 <a th:href="@{/}">Retour à l'accueil</a>

@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Accueil</title>
-    <link th:href="@{/css/navbar.css}" rel="stylesheet" type="text/css" />
+    <th:block th:fragment="css">
+        <link th:href="@{/css/navbar.css}" rel="stylesheet" type="text/css" />
+    </th:block>
     <link th:href="@{/css/splashscreen.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
+<th:block th:fragment="tete">
 <header>
     <div>
         <div>
+            <h1 th:text="${@environment.getProperty('academy.name')}"></h1>
             <a th:href="@{/students}">Liste des étudiants</a>
             <a th:href="@{/registration}">Inscription</a>
         </div>
         <div>
-
-
-        <form action="#" th:action="@{/search}" th:object="${student}" method="get" >
+<!--        <form action="#" th:action="@{/search}" th:object="${student}" method="get" >
+                on ne peut pas utiliser d'object dans la navbar car elle est partagée dans le bloc-->
+        <form action="#" th:action="@{/search}"  method="get" >
             <label for="search" class="form-label">Rechercher par nom :</label>
-            <input type="text" id="search" placeholder="dupont" th:field="*{lastName}" >
+<!--        <input type="text" id="search" placeholder="dupont" th:field="*{lastName}" >-->
+            <input type="text" id="search" placeholder="dupont" th:name="lastName" >
             <button type="submit">Rerchercher</button>
         </form>
         </div>
     </div>
 </header>
+</th:block>
+
 
 <main>
     <div>

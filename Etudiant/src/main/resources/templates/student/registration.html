@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Inscription</title>
+    <span th:replace="~{index :: css }" ></span>
 </head>
 <body>
+    <span th:replace="~{index :: tete}"></span>
     <main>
         <form action="#" method="post" th:action="@{/registration}" th:object="${student}" >
             <label for="last" >Nom</label>
@@ -18,6 +20,8 @@
             <button type="submit">Inscrire</button>
         </form>
     </main>
-
+    <footer>
+        <a th:href="@{/}">Retour à l'accueil</a>
+    </footer>
 </body>
 </html>

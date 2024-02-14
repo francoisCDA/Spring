@@ -15,6 +15,7 @@ public class StudentService implements SpringService<Student> {
     private final Map<UUID, Student> etudiants;
 
 
+
     public StudentService() {
         this.etudiants = new HashMap<>();
 
@@ -47,7 +48,7 @@ public class StudentService implements SpringService<Student> {
     }
 
     public List<Student> searchByName(String name) {
-        return etudiants.values().stream().filter( student -> student.getLastName().toLowerCase().contains(name.toLowerCase())).toList();
+        return etudiants.values().stream().filter( student -> student.getLastName().toLowerCase().contains(name.toLowerCase()) || student.getFirstName().toLowerCase().contains(name.toLowerCase()) ).toList();
     }
 
     public Student getById(UUID id) {

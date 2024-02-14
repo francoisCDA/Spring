@@ -1,0 +1,38 @@
+table {
+    width: 80%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: auto;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    & a {
+        width: 40px;
+        display: inline-block;
+        margin: auto;
+    }
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+caption {
+    font-style: italic;
+    font-size: xxx-large;
+    font-weight: bolder;
+
+}

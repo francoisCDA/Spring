@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.etudiant.model.Student;
 import org.example.etudiant.service.SpringService;
 import org.example.etudiant.service.StudentService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,12 @@ import java.util.UUID;
 public class StudentController {
 
     private final SpringService<Student> studentService;
+
+//    @Value("${academy.name}")
+//    private final String academyName;
+//
+//    @Value("${academy.contact")
+//    private final String academyMail;
 
     @GetMapping("/")
     public String accueil(Model model) {

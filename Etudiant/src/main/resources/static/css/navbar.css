@@ -2,6 +2,7 @@ header {
     background-color: green;
     width: 80%;
     margin: auto;
+    margin-bottom: 1rem;
     border-radius : 8px;
     box-shadow: 0 4px 6px rgba(0, 155, 0, 0.5);
     font-family: "Inter Semi Bold", sans-serif;
@@ -10,6 +11,12 @@ header {
         display: flex;
         justify-content: space-between;
         padding: 1rem;
+    }
+
+    & h1 {
+        color: red;
+        font-size: 2em;
+        margin-right: 1em;
     }
 }
 
@@ -79,4 +86,13 @@ input[type="text"]:hover {
 input[type="text"]:focus {
     outline: none;
     border-color: #5c9dfd;
+}
+
+footer {
+    width: 80%;
+    margin: auto;
+    & a {
+        text-align: center;
+    }
+
 }

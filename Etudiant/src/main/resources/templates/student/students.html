@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Etudiants</title>
+    <span th:replace="~{index :: css }" ></span>
+    <link th:href="@{/css/table.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    <span th:replace="~{index :: tete}"></span>
 <main>
-
     <table>
-        <caption>Liste des étudiants inscrits</caption>
+        <caption>Liste des étudiants</caption>
         <thead>
             <tr>
                 <th>Nom</th>
@@ -31,10 +33,9 @@
     </table>
 
 
-
-
-    <a th:href="@{/}">Retour à l'accueil</a>
 </main>
-
+<footer>
+    <a th:href="@{/}">Retour à l'accueil</a>
+</footer>
 </body>
 </html>

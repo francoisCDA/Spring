@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Recherche</title>
+   <span th:replace="~{index :: css }" ></span>
 </head>
 <body>
+<span th:replace="~{index :: tete}"></span>
 <main>
     <h1>Aucun étudiant trouvé...</h1>
-    <a th:href="@{/}">Retour à l'accueil</a>
-</main>
 
+</main>
+<footer>
+    <a th:href="@{/}">Retour à l'accueil</a>
+</footer>
 
 </body>
 </html>
