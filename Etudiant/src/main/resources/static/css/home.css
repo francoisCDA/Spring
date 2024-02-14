@@ -5,11 +5,29 @@ header {
 
     & div {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
         padding: 1rem;
-        border-radius : 12px;
+        border-radius : 12%;
     }
 
+}
 
+form {
+    display: flex;
+    flex-direction: column;
 
+    & button {
+        color: blue;
+        padding: 0.4rem;
+        background-color: orange;
+    }
+}
+
+a {
+    margin : 0.2rem;
+    padding: 0.4rem;
+    border : 1px solid blue;
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: center;
 }
