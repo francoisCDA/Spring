@@ -5,6 +5,19 @@
     <title>Inscription</title>
 </head>
 <body>
+    <main>
+        <form action="#" method="post" th:action="@{/registration}" th:object="${student}" >
+            <label for="last" >Nom</label>
+            <input type="text" id="last" th:field="*{lastName}" />
+            <label for="first" >Prénom</label>
+            <input type="text" id="first" th:field="*{firstName}" />
+            <label for="birth" >Date de naissance</label>
+            <input type="date" id="birth" th:field="*{birthday}" />
+            <label for="mail" >Couriel</label>
+            <input type="text" id="mail" th:field="*{mail}" />
+            <button type="submit">Inscrire</button>
+        </form>
+    </main>
 
 </body>
 </html>

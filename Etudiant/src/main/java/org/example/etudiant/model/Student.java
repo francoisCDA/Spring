@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
@@ -17,7 +18,7 @@ public class Student {
     private UUID id;
     private String lastName;
     private String firstName;
-    private int age;
+    private LocalDate birthday;
     private String mail;
 
 

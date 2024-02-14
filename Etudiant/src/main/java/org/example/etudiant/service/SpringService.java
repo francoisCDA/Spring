@@ -5,10 +5,12 @@ import java.util.UUID;
 
 public interface SpringService<T> {
 
-    void save(T obj);
+    boolean save(T obj);
 
     List<T> getAll();
 
     T getById(UUID id);
 
+
+    List<T> searchByName(String search);
 }

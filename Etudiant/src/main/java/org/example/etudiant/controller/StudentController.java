@@ -6,10 +6,10 @@ import org.example.etudiant.service.SpringService;
 import org.example.etudiant.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,12 +18,12 @@ public class StudentController {
     private final SpringService<Student> studentService;
 
     @GetMapping("/")
-    public String accueil() {
-
+    public String accueil(Model model) {
+        model.addAttribute("student",new Student());
         return "index";
     }
 
-    @GetMapping("/sudents")
+    @GetMapping("/students")
     public String students(Model model){
         List<Student> students = studentService.getAll();
 
@@ -32,26 +32,42 @@ public class StudentController {
         return "student/students";
     }
 
-    @GetMapping("/registration")
-    public String registration() {
+    @GetMapping("/student/{idStudent}")
+    public String student(@PathVariable("idStudent")UUID id, Model model){
+        Student student = studentService.getById(id);
+        model.addAttribute("student",student);
+        return "student/student";
+    }
 
+    @GetMapping("/registration")
+    public String registration(Model model) {
+        model.addAttribute("student",new Student());
         return "student/registration";
     }
 
     @PostMapping("/registration")
-    public String enregistration() {
-        return "/";
+    public String enregistration(@ModelAttribute("student") Student student) {
+
+        if (studentService.save(student)){
+            return "redirect:/students";
+        }
+        return "error/error";
     }
 
     @GetMapping("/search")
-    public String search(){
+    public String search(@RequestParam(value="lastName") String search, Model model){
+
+        List<Student> resultSearch = studentService.searchByName(search);
+
+        if (!resultSearch.isEmpty() && resultSearch != null) {
+            model.addAttribute("students",resultSearch);
+            return "student/students";
+        }
+
         return "student/search";
     }
 
-    @PostMapping("/search")
-    public String research(){
-        return "/";
-    }
+
 
 
     @GetMapping("/error")

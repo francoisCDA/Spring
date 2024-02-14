@@ -6,5 +6,32 @@
 </head>
 <body>
 
+
+<table>
+    <caption>Liste des étudiants inscrits</caption>
+    <thead>
+    <tr>
+        <th>nom</th>
+        <th>prénom</th>
+        <th>date de naissance</th>
+        <th>courriel</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><span th:text="${student.getLastName()}"></span></td>
+        <td><span th:text="${student.getFirstName()}"></span></td>
+        <td><span th:text="${student.getBirthday()}"></span></td>
+        <td><span th:text="${student.getMail()}"></span></td>
+    </tr>
+    </tbody>
+
+</table>
+
+
+
+
+<a th:href="@{/}">Retour à l'accueil</a>
+
 </body>
 </html>

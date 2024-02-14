@@ -3,8 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Accueil</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
+
+<header>
+    <div>
+        <div>
+            <a th:href="@{/students}">Liste des étudiants</a>
+            <a th:href="@{/registration}">Inscription</a>
+        </div>
+        <div>
+
+
+        <form action="#" th:action="@{/search}" th:object="${student}" method="get" >
+            <label for="search" class="form-label">Rechercher par nom :</label>
+            <input type="text" id="search" placeholder="dupont" th:field="*{lastName}" >
+            <button type="submit">Rercherche</button>
+        </form>
+        </div>
+    </div>
+</header>
+
+<main>
+
+</main>
+
 
 </body>
 </html>
