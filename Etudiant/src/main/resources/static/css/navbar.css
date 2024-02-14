@@ -1,0 +1,82 @@
+header {
+    background-color: green;
+    width: 80%;
+    margin: auto;
+    border-radius : 8px;
+    box-shadow: 0 4px 6px rgba(0, 155, 0, 0.5);
+    font-family: "Inter Semi Bold", sans-serif;
+
+    & div {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: #5c9dfd;
+    padding: 0.5rem;
+    border-radius: 8px;
+
+    & label {
+        font-style: italic;
+        margin-bottom: 3px;
+    }
+
+    & button {
+        color: darkred;
+        padding: 0.4rem;
+        background-color: orange;
+        font-size: larger;
+        border: none;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px
+    }
+
+    & button:hover {
+        background-color: chocolate;
+        color: orange;
+    }
+
+}
+
+a {
+    margin : 0.2rem;
+    padding: 0.3rem;
+    color : darkred;
+    border : 3px solid lightcoral;
+    text-decoration: none;
+
+    font-size: large;
+
+    background-color: lightsalmon;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+}
+
+a:hover{
+    color: red;
+    background-color: chocolate;
+}
+
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:hover {
+    border-color: #999;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #5c9dfd;
+}

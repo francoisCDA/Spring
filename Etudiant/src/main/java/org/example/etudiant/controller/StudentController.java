@@ -54,7 +54,7 @@ public class StudentController {
         return "error/error";
     }
 
-    @GetMapping("/search")
+    @GetMapping("/search") // peut être fusionnée avec /students en rendant le RequestParam optionnel
     public String search(@RequestParam(value="lastName") String search, Model model){
 
         List<Student> resultSearch = studentService.searchByName(search);
