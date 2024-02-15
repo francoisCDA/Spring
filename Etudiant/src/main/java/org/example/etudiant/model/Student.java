@@ -30,6 +30,7 @@ public class Student {
     @Past(message = "la date ne peut être dans le futur")
     private LocalDate birthday;
 
+    @NotNull(message = "mail obligatoire" )
     @Email(message = "format mail invalide")
     private String mail;
 

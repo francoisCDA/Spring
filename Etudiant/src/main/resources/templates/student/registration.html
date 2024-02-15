@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <title>Inscription</title>
     <span th:replace="~{index :: css }" ></span>
-    <link th:href="@{/css/errorCss.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/registration.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <span th:replace="~{index :: tete}"></span>
     <main>
+        <div class="container">
+
+
         <form action="#" method="post" th:action="@{/registration}" th:object="${student}" >
 
                 <h3 th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"  ></h3>
@@ -29,6 +32,7 @@
 
             <button type="submit" ><span th:text="${student.id != null ? 'Modifier' : 'Inscrire'} "></span></button>
         </form>
+        </div>
     </main>
     <footer>
         <a th:href="@{/}">Retour à l'accueil</a>
