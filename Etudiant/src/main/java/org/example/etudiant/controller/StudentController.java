@@ -83,6 +83,7 @@ public class StudentController {
     @GetMapping("edit/{id}")
     public String edit(@PathVariable UUID id,Model model) {
         Student student = studentService.getById(id);
+        System.out.println(student);
         model.addAttribute("student",student);
         return "student/registration";
     }

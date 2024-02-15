@@ -9,15 +9,16 @@
     <span th:replace="~{index :: tete}"></span>
     <main>
         <form action="#" method="post" th:action="@{/registration}" th:object="${student}" >
+            <input type="hidden" th:field="*{id}" >
             <label for="last" >Nom</label>
-            <input type="text" id="last" th:value="${student.getLastName()}" th:field="*{lastName}" />
+            <input type="text" id="last"  th:field="*{lastName}" />
             <label for="first" >Prénom</label>
-            <input type="text" id="first" th:value="${student.getFirstName()}" th:field="*{firstName}" />
+            <input type="text" id="first"  th:field="*{firstName}" />
             <label for="birth" >Date de naissance</label>
-            <input type="date" id="birth" th:value="${student.getBirthday()}" th:field="*{birthday}" />
+            <input type="date" id="birth"  th:field="*{birthday}" />
             <label for="mail" >Couriel</label>
-            <input type="text" id="mail" th:value="${student.getMail()}" th:field="*{mail}" />
-            <button type="submit">Inscrire</button>
+            <input type="text" id="mail"  th:field="*{mail}" />
+            <button type="submit" ><span th:text="${student.id != null ? 'Modifier' : 'Inscrire'} "></span></button>
         </form>
     </main>
     <footer>
