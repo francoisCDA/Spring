@@ -1,5 +1,6 @@
 package org.example.etudiant.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.etudiant.model.Student;
 import org.example.etudiant.service.SpringService;
@@ -7,6 +8,7 @@ import org.example.etudiant.service.StudentService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,7 +49,12 @@ public class StudentController {
     }
 
     @PostMapping("/registration")
-    public String enregistration(@ModelAttribute("student") Student student) {
+    public String enregistration(@Valid @ModelAttribute("student") Student student, BindingResult results) {
+
+        if (results.hasErrors()) {
+            return "student/registration";
+        }
+
         System.out.println(student);
         if (student.getId() == null) {
             if (studentService.save(student)){

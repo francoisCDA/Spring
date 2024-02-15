@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.example</groupId>
-    <artifactId>Etudiant</artifactId>
+    <artifactId>Validation</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Etudiant</name>
-    <description>Etudiant</description>
+    <name>Validation</name>
+    <description>Validation</description>
     <properties>
         <java.version>21</java.version>
     </properties>
@@ -20,6 +20,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -41,10 +45,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
     </dependencies>
 

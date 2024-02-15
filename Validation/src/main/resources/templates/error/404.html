@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ERROR 404</title>
+</head>
+<body>
+    <h1>Error 404 : bad path</h1>
+    <p>Chemin non valide : <span th:text="${path}" ></span></p>
+    <p>Le status est : <span th:text="${status}" ></span> </p>
+    <p>Code erreur : <span th:text="${error}" ></span> </p>
+    <p>Message : <span th:text="${message}" ></span> </p>
+
+    <a th:href="@{/home}" >Go Back Home</a>
+</body>
+</html>

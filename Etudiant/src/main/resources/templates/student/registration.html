@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <title>Inscription</title>
     <span th:replace="~{index :: css }" ></span>
+    <link th:href="@{/css/errorCss.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <span th:replace="~{index :: tete}"></span>
     <main>
         <form action="#" method="post" th:action="@{/registration}" th:object="${student}" >
+
+                <h3 th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"  ></h3>
+                <h3 th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"  ></h3>
+                <h3 th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"  ></h3>
+                <h3 th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"  ></h3>
+
+
             <input type="hidden" th:field="*{id}" >
             <label for="last" >Nom</label>
             <input type="text" id="last"  th:field="*{lastName}" />
@@ -18,6 +26,7 @@
             <input type="date" id="birth"  th:field="*{birthday}" />
             <label for="mail" >Couriel</label>
             <input type="text" id="mail"  th:field="*{mail}" />
+
             <button type="submit" ><span th:text="${student.id != null ? 'Modifier' : 'Inscrire'} "></span></button>
         </form>
     </main>
