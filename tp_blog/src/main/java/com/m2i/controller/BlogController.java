@@ -20,7 +20,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BlogController {
 
-    private BlogService blogService;
+    private final BlogService blogService;
 
 
     @GetMapping("/") //localhost:8080/
@@ -31,7 +31,7 @@ public class BlogController {
 
     @GetMapping("/post") //localhost:8080/post
     public String newPost(Model model) {
-        model.addAttribute("post", new Post());
+        model.addAttribute("newpost", new Post());
         return "blog/post";
     }
 
@@ -51,8 +51,8 @@ public class BlogController {
         List<Commentary> commentaries = blogService.getCommentaryByPostId(id);
         model.addAttribute("post",post);
         model.addAttribute("comments",commentaries);
-        model.addAttribute("commentary",new Commentary());
-        return "article";
+        model.addAttribute("newCommentary",new Commentary());
+        return "blog/article";
     }
 
 

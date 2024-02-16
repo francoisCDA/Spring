@@ -31,21 +31,22 @@
 
     <div class="container">
         <h2>Laisse un commentaire</h2>
-        <form action="#" th:action="@{/comment}" th:object="${commentary}" method="post" >
+
+        <form action="#" th:action="@{/comment}" th:object="${newCommentary}" method="post" >
             <div>
                 <label for="nom" >Nom</label>
                 <input type="text" id="nom"  th:field="*{auteur}" />
-                <span th:if="${#fields.hasErros('auteur')}" th:errors="*{auteur}" ></span>
+<!--                <span th:if="${#fields.hasErros('auteur')}" th:errors="*{auteur}" ></span>-->
             </div>
             <div>
                 <label for="mail" >Email</label>
                 <input type="text" id="mail"  th:field="*{email}" />
-                <span th:if="${#fields.hasErros('email')}" th:errors="*{email}" ></span>
+<!--                <span th:if="${#fields.hasErros('email')}" th:errors="*{email}" ></span>-->
             </div>
             <div>
                 <label for="comment" >Commentaire</label>
-                <textarea id="comment"  th:field="*{article}" rows="11" >J'aimme beaucoup le...</textarea>
-                <span th:if="${#fields.hasErros('description')}" th:errors="*{article}" ></span>
+                <textarea id="comment"  th:field="*{message}" rows="11" >J'aime beaucoup le...</textarea>
+<!--                <span th:if="${#fields.hasErros('description')}" th:errors="*{article}" ></span>-->
             </div>
 
             <button type="submit" >Commenter</button>

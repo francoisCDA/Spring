@@ -8,11 +8,11 @@
 <body>
 <span th:replace="~{index :: blogheader }" ></span>
 <main>
-
-    <form action="#" th:action="@{/post}" th:object="${post}" method="post" >
+<h1>nouvelle publication</h1>
+    <form action="#" th:action="@{/post}" th:object="${newpost}" method="post" >
         <div>
             <label for="last" >Title</label>
-            <input type="text" id="last"  th:field="*{title}" />
+            <input type="text" id="last" th:field="*{title}" />
             <span th:if="${#fields.hasErros('title')}">titre obligatoire</span>
         </div>
         <div>
