@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Article</title>
+    <span th:replace="~{index :: blogcss }" ></span>
+</head>
+<body>
+<span th:replace="~{index :: blogheader }" ></span>
+<main>
+    <div class="container">
+        <h1 th:text="${post.title}"></h1>
+        <h2 th:text="${post.description}"></h2>
+
+        <p  th:text="${post.article}"></p>
+
+        <h3>publié le : <span th:text="${post.date}"></span></h3>
+    </div>
+
+    <div class="container" th:unless="${comments.isEmpty()}"  >
+
+        <div th:each="com : ${comments}" >
+            <h2>Publié par : <span th:text="${com.auteur}"></span>  </h2>
+            <p th:text="${com.article}" ></p>
+
+            <p>Le <span th:text="${com.date}"></span>, contact <span th:text="${com.mail}"></span> </p>
+        </div>
+
+
+    </div>
+
+    <div class="container">
+        <h2>Laisse un commentaire</h2>
+        <form action="#" th:action="@{/comment}" th:object="${commentary}" method="post" >
+            <div>
+                <label for="nom" >Nom</label>
+                <input type="text" id="nom"  th:field="*{auteur}" />
+                <span th:if="${#fields.hasErros('auteur')}" th:errors="*{auteur}" ></span>
+            </div>
+            <div>
+                <label for="mail" >Email</label>
+                <input type="text" id="mail"  th:field="*{email}" />
+                <span th:if="${#fields.hasErros('email')}" th:errors="*{email}" ></span>
+            </div>
+            <div>
+                <label for="comment" >Commentaire</label>
+                <textarea id="comment"  th:field="*{article}" rows="11" >J'aimme beaucoup le...</textarea>
+                <span th:if="${#fields.hasErros('description')}" th:errors="*{article}" ></span>
+            </div>
+
+            <button type="submit" >Commenter</button>
+
+
+        </form>
+
+    </div>
+
+
+
+</main>
+<span th:replace="~{index :: blogfooter }" ></span>
+</body>
+</html>

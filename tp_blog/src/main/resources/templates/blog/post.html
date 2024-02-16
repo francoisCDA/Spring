@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+    <span th:replace="~{index :: blogcss }" ></span>
+</head>
+<body>
+<span th:replace="~{index :: blogheader }" ></span>
+<main>
+
+    <form action="#" th:action="@{/post}" th:object="${post}" method="post" >
+        <div>
+            <label for="last" >Title</label>
+            <input type="text" id="last"  th:field="*{title}" />
+            <span th:if="${#fields.hasErros('title')}">titre obligatoire</span>
+        </div>
+        <div>
+            <label for="desc" >Description</label>
+            <input type="text" id="desc"  th:field="*{description}" />
+            <span th:if="${#fields.hasErros('description')}" th:errors="*{description}" ></span>
+        </div>
+        <div>
+            <label for="article" >Message</label>
+            <textarea id="article"  th:field="*{article}" rows="11" >Raconte nous tout...</textarea>
+            <span th:if="${#fields.hasErros('description')}" th:errors="*{description}" ></span>
+        </div>
+
+        <button type="submit" >Envoyer</button>
+
+    </form>
+
+</main>
+
+<span th:replace="~{index :: blogfooter }" ></span>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <th:block th:fragment="blogcss">
+        <link th:href="@{/css/blog.css}" rel="stylesheet" type="text/css" />
+    </th:block>
+    <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<th:block th:fragment="blogheader">
+    <header>
+        <nav>
+            <ul>
+                <li><a th:href="@{/home}">Accueil</a></li>
+                <li><a th:href="@{/post}">Rédiger un article</a></li>
+            </ul>
+        </nav>
+    </header>
+</th:block>
+<main>
+    <h1> Welcome to BlablaBlog</h1>
+
+    <div class="container" th:unless="${articles.isEmpty()}">
+        <div class="card" th:each="a : ${articles}">
+            <h2 th:text="${a.title}" ></h2>
+            <p th:text="${a.description}" ></p>
+            <a th:href="@{/article/{id}(id=${a.id})}">lire</a>
+        </div>
+    </div>
+
+    <p class="container" th:if="${articles.isEmpty()}" >
+        Aucun article, commencer à rédiger  <a th:href="@{/post}">ici</a>
+    </p>
+
+</main>
+<th:block th:fragment="blogfooter">
+    <footer>
+        <p>todo</p>
+    </footer>
+</th:block>
+</body>
+</html>

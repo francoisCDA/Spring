@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error page</title>
+</head>
+<body>
+<h1>Something get wrong</h1>
+<p>Chemin : <span th:text="${path}" ></span></p>
+<p>Le status est : <span th:text="${status}" ></span> </p>
+<p>Code erreur : <span th:text="${error}" ></span> </p>
+<p>Message : <span th:text="${message}" ></span> </p>
+
+<a th:href="@{/}" >Go Back Home</a>
+
+</body>
+</html>
