@@ -28,6 +28,13 @@ public class BlogService {
 
 
     public Commentary newCommentary(Commentary commentary) {
+
+        Post post = getPostById(commentary.getPostId());
+
+        if (post == null) return null;
+
+        commentary.setId(UUID.randomUUID());
+        commentary.setDate(new Date());
         commentaries.put(commentary.getId(),commentary);
         return commentary;
     }

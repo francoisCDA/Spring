@@ -45,7 +45,7 @@ public class BlogController {
         return "redirect:/";
     }
 
-    @GetMapping("/article{id}")
+    @GetMapping("/article/{id}")
     public String article(@PathVariable UUID id, Model model) {
         Post post = blogService.getPostById(id);
         List<Commentary> commentaries = blogService.getCommentaryByPostId(id);
@@ -53,6 +53,18 @@ public class BlogController {
         model.addAttribute("comments",commentaries);
         model.addAttribute("newCommentary",new Commentary());
         return "blog/article";
+    }
+
+    @PostMapping("/comment/{postId}")
+    public String comment(@PathVariable UUID postId,@Valid @ModelAttribute("newCommentary") Commentary commentary, BindingResult results){
+
+        if (!results.hasErrors()) {
+            commentary.setPostId(postId);
+            blogService.newCommentary(commentary);
+        }
+
+        return "redirect:/article/"+postId;
+
     }
 
 
