@@ -1,7 +1,7 @@
 package com.m2i.controller;
 
-import com.m2i.model.Commentary;
-import com.m2i.model.Post;
+import com.m2i.entity.Commentary;
+import com.m2i.entity.Post;
 import com.m2i.service.BlogService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

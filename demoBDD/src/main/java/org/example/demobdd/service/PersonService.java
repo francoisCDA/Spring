@@ -10,6 +10,8 @@ public interface PersonService {
 
     Person findById(Long id);
 
+    Person finByIdOpt(Long id);
+
     void save(Person person);
 
     boolean delete(Long id);

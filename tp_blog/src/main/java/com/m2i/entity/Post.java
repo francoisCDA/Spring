@@ -1,5 +1,7 @@
-package com.m2i.model;
+package com.m2i.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -10,16 +12,17 @@ import lombok.NoArgsConstructor;
 
 
 import java.util.Date;
-import java.util.List;
 
 import java.util.UUID;
 
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
 
+    @Id
     private UUID id;
 
     @NotNull

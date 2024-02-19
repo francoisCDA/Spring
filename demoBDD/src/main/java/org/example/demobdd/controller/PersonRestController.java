@@ -34,6 +34,10 @@ public class PersonRestController {
         return personService.findById(id);
     }
 
+    @PutMapping("/person")
+    public Person put(@RequestBody Person person) {
+        return personService.update(person);
+    }
 
 
 }
