@@ -1,7 +1,8 @@
 package com.m2i.controller;
 
-import com.m2i.entity.Commentary;
-import com.m2i.entity.Post;
+import com.m2i.dto.CommentaryDTO;
+import com.m2i.dto.PostDTO;
+
 import com.m2i.service.BlogService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +32,12 @@ public class BlogController {
 
     @GetMapping("/post") //localhost:8080/post
     public String newPost(Model model) {
-        model.addAttribute("newpost", new Post());
+        model.addAttribute("newpost", new PostDTO());
         return "blog/post";
     }
 
     @PostMapping("/post")
-    public String postPost(@Valid @ModelAttribute("post") Post post, BindingResult resulst) {
+    public String postPost(@Valid @ModelAttribute("post") PostDTO post, BindingResult resulst) {
         if (resulst.hasErrors()) {
             return "blog/post";
         }
@@ -47,16 +48,16 @@ public class BlogController {
 
     @GetMapping("/article/{id}")
     public String article(@PathVariable UUID id, Model model) {
-        Post post = blogService.getPostById(id);
-        List<Commentary> commentaries = blogService.getCommentaryByPostId(id);
+        PostDTO post = blogService.getPostById(id);
+        List<CommentaryDTO> commentaries = blogService.getCommentaryByPostId(id);
         model.addAttribute("post",post);
         model.addAttribute("comments",commentaries);
-        model.addAttribute("newCommentary",new Commentary());
+        model.addAttribute("newCommentary",new CommentaryDTO());
         return "blog/article";
     }
 
     @PostMapping("/comment/{postId}")
-    public String comment(@PathVariable UUID postId,@Valid @ModelAttribute("newCommentary") Commentary commentary, BindingResult results){
+    public String comment(@PathVariable UUID postId,@Valid @ModelAttribute("newCommentary") CommentaryDTO commentary, BindingResult results){
 
         if (!results.hasErrors()) {
             commentary.setPostId(postId);

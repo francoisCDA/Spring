@@ -1,5 +1,6 @@
 package com.m2i.entity;
 
+import com.m2i.dto.CommentaryDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
@@ -27,18 +28,23 @@ public class Commentary {
 
     private UUID postId;
 
-    @Size(max = 20)
     private String auteur;
 
-    @Email
     private String email;
 
-    @NotBlank
-    @NotEmpty
     private String message;
 
     private Date date;
 
 
-
+    public CommentaryDTO toCommentaryDto() {
+        return CommentaryDTO.builder()
+                .id(this.id)
+                .postId(this.postId)
+                .auteur(this.auteur)
+                .email(this.email)
+                .message(this.message)
+                .date(this.date)
+                .build();
+    }
 }

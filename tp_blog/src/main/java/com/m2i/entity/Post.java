@@ -1,5 +1,6 @@
 package com.m2i.entity;
 
+import com.m2i.dto.PostDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
@@ -25,23 +26,21 @@ public class Post {
     @Id
     private UUID id;
 
-    @NotNull
-    @NotBlank
-    @Size(max = 50)
     private String title;
 
-    @NotNull
-    @NotBlank
-    @Size(min = 20)
-    @Size(max = 100)
     private String description;
 
-    @NotNull
-    @NotBlank
-    @Size(min = 150)
-    @Size(max = 4000)
     private String article;
 
     private Date date;
 
+    public PostDTO toPostDTO() {
+        return  PostDTO.builder()
+                .id(this.id)
+                .title(this.title)
+                .description(this.description)
+                .article(this.article)
+                .date(this.date)
+                .build();
+    }
 }

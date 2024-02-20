@@ -2,8 +2,8 @@ package com.m2i.controller;
 
 
 
-import com.m2i.entity.Commentary;
-import com.m2i.entity.Post;
+import com.m2i.dto.CommentaryDTO;
+import com.m2i.dto.PostDTO;
 import com.m2i.service.BlogService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,17 +22,17 @@ public class BlogRestController {
 
 
     @GetMapping("/articles")
-    public List<Post> getall() { return blogService.getAllPost();}
+    public List<PostDTO> getall() { return blogService.getAllPost();}
 
     @GetMapping("/article/{id}")
-    public Post getPostById(@PathVariable UUID id) {return blogService.getPostById(id);}
+    public PostDTO getPostById(@PathVariable UUID id) {return blogService.getPostById(id);}
 
     @GetMapping("/article/{id}/comments")
-    public List<Commentary> getCommentariesByPostId(@PathVariable UUID id) {return blogService.getCommentaryByPostId(id);}
+    public List<CommentaryDTO> getCommentariesByPostId(@PathVariable UUID id) {return blogService.getCommentaryByPostId(id);}
 
 
     @PostMapping("/articles")
-    public Post postPost(@Valid @RequestBody Post post, BindingResult result){
+    public PostDTO postPost(@Valid @RequestBody PostDTO post, BindingResult result){
         if (result.hasErrors()) {
             return null;
         }
@@ -42,11 +42,10 @@ public class BlogRestController {
     }
 
     @PostMapping("/comment")
-    public Commentary postCommentary(@PathVariable UUID postId, @Valid @RequestBody Commentary commentary, BindingResult result){
+    public CommentaryDTO postCommentary(@PathVariable UUID postId, @Valid @RequestBody CommentaryDTO commentary, BindingResult result){
         if (result.hasErrors()) {
             return null;
         }
-
         return blogService.newCommentary(commentary);
 
     }

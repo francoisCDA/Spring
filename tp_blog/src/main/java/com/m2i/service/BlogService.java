@@ -1,5 +1,7 @@
 package com.m2i.service;
 
+import com.m2i.dto.CommentaryDTO;
+import com.m2i.dto.PostDTO;
 import com.m2i.exception.UnknowPostId;
 import com.m2i.entity.Commentary;
 import com.m2i.entity.Post;
@@ -19,42 +21,62 @@ public class BlogService {
     private final CommentaryRepository commentaryRepository;
 
 
-    public Post newPost(Post post) {
-        post.setId(UUID.randomUUID());
-        post.setDate(new Date());
-        postRepository.save(post);
-        return post;
+    public PostDTO newPost(PostDTO postDto) {
+
+        Post newPost = Post.builder()
+                .article(postDto.getArticle())
+                .title(postDto.getTitle())
+                .description(postDto.getDescription())
+                .id(UUID.randomUUID())
+                .date(new Date())
+                .build();
+        postRepository.save(newPost);
+
+        return newPost.toPostDTO();
     }
 
 
-    public Commentary newCommentary(Commentary commentary) {
+    public CommentaryDTO newCommentary(CommentaryDTO commentaryDto) {
 
-        Post post = getPostById(commentary.getPostId());
+        Post post = postRepository.findByIdIs(commentaryDto.getPostId());
 
-        if (post == null) return null;
+        if (post == null) throw new UnknowPostId("Le post a été supprimé");
 
-        commentary.setId(UUID.randomUUID());
-        commentary.setDate(new Date());
-        commentaryRepository.save(commentary);
-        return commentary;
+        Commentary newCommentary = Commentary.builder()
+                .postId(commentaryDto.getPostId())
+                .auteur(commentaryDto.getAuteur())
+                .email(commentaryDto.getEmail())
+                .message(commentaryDto.getMessage())
+                .id(UUID.randomUUID())
+                .date(new Date())
+                .build();
+
+        commentaryRepository.save(newCommentary);
+        return newCommentary.toCommentaryDto();
     }
 
-    public List<Post> getAllPost() {return postRepository.findAll();}
-
-    public List<Commentary> getCommentaryByPostId(UUID postId) {
-        return commentaryRepository.findAllByPostIdIs(postId);
+    public List<PostDTO> getAllPost() {
+        return postRepository.findAll().stream().map(Post::toPostDTO).toList();
     }
 
-    public Post getPostById(UUID postId) { return postRepository.findByIdIs(postId);}
+    public List<CommentaryDTO> getCommentaryByPostId(UUID postId) {
+        return commentaryRepository.findAllByPostIdIs(postId).stream().map(Commentary::toCommentaryDto).toList();
+    }
 
-    public Commentary getCommentaryById(UUID id) { return commentaryRepository.findByIdIs(id);};
+    public PostDTO getPostById(UUID postId) { return postRepository.findByIdIs(postId).toPostDTO();}
+
+    public CommentaryDTO getCommentaryById(UUID id) { return commentaryRepository.findByIdIs(id).toCommentaryDto();};
 
 
-    public Post editPost(Post newpost){
-        Post actualPost = getPostById(newpost.getId());
+    public PostDTO editPost(PostDTO updPost){
+        Post actualPost = postRepository.findByIdIs(updPost.getId());
         if (actualPost == null) { throw new UnknowPostId("Mise à jour impossible"); }
 
-        return postRepository.save(newpost);
+        actualPost.setTitle(updPost.getTitle());
+        actualPost.setArticle(updPost.getArticle());
+        actualPost.setDescription(updPost.getDescription());
+
+        return postRepository.save(actualPost).toPostDTO();
     }
 
     public boolean deletePost(UUID postId) {
