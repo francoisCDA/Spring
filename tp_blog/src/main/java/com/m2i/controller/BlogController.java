@@ -37,7 +37,8 @@ public class BlogController {
     }
 
     @PostMapping("/post")
-    public String postPost(@Valid @ModelAttribute("post") PostDTO post, BindingResult resulst) {
+    public String postPost(@Valid @ModelAttribute("newpost") PostDTO post, BindingResult resulst) {
+
         if (resulst.hasErrors()) {
             return "blog/post";
         }

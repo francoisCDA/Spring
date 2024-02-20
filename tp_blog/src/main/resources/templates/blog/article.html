@@ -8,53 +8,54 @@
 <body>
 <span th:replace="~{index :: blogheader }" ></span>
 <main>
-    <div class="container">
-        <h1 th:text="${post.title}"></h1>
-        <h2 th:text="${post.description}"></h2>
+<!--    <div class="container">-->
+<!--        <h1 th:text="${post.title}"></h1>-->
+<!--        <h2 th:text="${post.description}"></h2>-->
 
-        <p  th:text="${post.article}"></p>
+<!--        <p  th:text="${post.article}"></p>-->
 
-        <h3>publié le : <span th:text="${post.date}"></span></h3>
-    </div>
+<!--        <h3>publié le : <span th:text="${post.date}"></span></h3>-->
+<!--        <p><a th:href="/" >Supprimer</a></p>-->
+<!--    </div>-->
 
-    <div class="container" th:unless="${comments.isEmpty()}"  >
+<!--    <div class="container" th:unless="${comments.isEmpty()}"  >-->
 
-        <div th:each="com : ${comments}" >
-            <h2>Commentaire de: <span th:text="${com.auteur}"></span>  </h2>
-            <p th:text="${com.message}" ></p>
+<!--        <div th:each="com : ${comments}" >-->
+<!--            <h2>Commentaire de: <span th:text="${com.auteur}"></span>  </h2>-->
+<!--            <p th:text="${com.message}" ></p>-->
 
-            <p>Le <span th:text="${com.date}"></span>, contact <span th:text="${com.email}"></span> </p>
-        </div>
-
-
-    </div>
-
-    <div class="container">
-        <h2>Laisse un commentaire</h2>
-
-        <form action="#" th:action="@{/comment/{postId}(postId=${post.id})}" th:object="${newCommentary}" method="post" >
-            <div>
-                <label for="nom" >Nom</label>
-                <input type="text" id="nom"  th:field="*{auteur}" />
-<!--                <span th:if="${#fields.hasErros('auteur')}" th:errors="*{auteur}" ></span>-->
-            </div>
-            <div>
-                <label for="mail" >Email</label>
-                <input type="text" id="mail"  th:field="*{email}" />
-<!--                <span th:if="${#fields.hasErros('email')}" th:errors="*{email}" ></span>-->
-            </div>
-            <div>
-                <label for="comment" >Commentaire</label>
-                <textarea id="comment"  th:field="*{message}" rows="11" >J'aime beaucoup le...</textarea>
-<!--                <span th:if="${#fields.hasErros('description')}" th:errors="*{article}" ></span>-->
-            </div>
-
-            <button type="submit" >Commenter</button>
+<!--            <p>Le <span th:text="${com.date}"></span>, contact <span th:text="${com.email}"></span> </p>-->
+<!--        </div>-->
 
 
-        </form>
+<!--    </div>-->
 
-    </div>
+<!--    <div class="container">-->
+<!--        <h2>Laisse un commentaire</h2>-->
+
+<!--        <form th:action="@{/comment/{postId}(postId=${post.id})}" th:object="${newCommentary}" method="post" >-->
+<!--            <div>-->
+<!--                <label for="nom" >Nom</label>-->
+<!--                <input type="text" id="nom"  th:field="*{auteur}" />-->
+<!--&lt;!&ndash;                <span th:if="${#fields.hasErrors('auteur')}" th:errors="*{auteur}" ></span>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="mail" >Email</label>-->
+<!--                <input type="text" id="mail"  th:field="*{email}" />-->
+<!--&lt;!&ndash;                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></span>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="comment" >Commentaire</label>-->
+<!--                <textarea id="comment"  th:field="*{message}" rows="11" >J'aime beaucoup le...</textarea>-->
+<!--&lt;!&ndash;                <span th:if="${#fields.hasErrors('description')}" th:errors="*{message}" ></span>&ndash;&gt;-->
+<!--            </div>-->
+
+<!--            <button type="submit" >Commenter</button>-->
+
+
+<!--        </form>-->
+
+<!--    </div>-->
 
 
 

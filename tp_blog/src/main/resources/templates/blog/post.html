@@ -9,7 +9,7 @@
 <span th:replace="~{index :: blogheader }" ></span>
 <main>
 <h1>nouvelle publication</h1>
-    <form action="#" th:action="@{/post}" th:object="${newpost}" method="post" >
+    <form th:action="@{/post}" th:object="${newpost}" method="post" >
         <div>
             <label for="last" >Title</label>
             <input type="text" id="last" th:field="*{title}" />
@@ -22,7 +22,7 @@
         </div>
         <div>
             <label for="article" >Message</label>
-            <textarea id="article"  th:field="*{article}" rows="11" >Raconte nous tout...</textarea>
+            <textarea id="article"  th:field="*{article}" rows="11" ></textarea>
             <span th:if="${#fields.hasErrors('article')}" th:errors="*{article}" ></span>
         </div>
 
