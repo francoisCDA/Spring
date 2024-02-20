@@ -31,14 +31,12 @@ public class LoginController {
     @GetMapping("/admin")
     public String admin() throws IdentificationException {
         boolean isAdmin = (boolean) _httpSession.getAttribute("root");
-
         if (isAdmin) {
             return "site/admin";
         }
-
         throw new IdentificationException();
-
     }
+
 
     @ExceptionHandler(IdentificationException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)

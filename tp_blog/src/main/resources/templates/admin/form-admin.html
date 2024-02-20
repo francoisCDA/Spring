@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <span th:replace="~{index :: blogcss }" ></span>
+</head>
+<body>
+<span th:replace="~{index :: blogheader }" ></span>
+
+<main>
+
+    <h1 th:unless="${isAdminExist}">Créer un compte administrateur</h1>
+
+    <h1 th:if="${isAdminExist}">Identification</h1>
+
+    <form method="post" th:action="@{/admin}" >
+        <div>
+            <label for="admin" >Login</label>
+            <input type="text" id="admin"  name="admin" />
+        </div>
+        <div>
+            <label for="passwrd" >Username</label>
+            <input type="password" id="passwrd" name="password" />
+        </div>
+        <button type="submit">Valider</button>
+    </form>
+</main>
+<span th:replace="~{index :: blogfooter }" ></span>
+</body>
+</html>

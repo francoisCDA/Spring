@@ -15,7 +15,10 @@
             <ul>
                 <li><a th:href="@{/}">Accueil</a></li>
                 <li><a th:href="@{/post}">Rédiger un article</a></li>
+                <li th:unless="${isAdminConnected}"><a th:href="@{/admin}">Administrateur</a></li>
+                <li th:if="${isAdminConnected}" > <a th:href="@{/disconnect}">disconnect</a> </li>
             </ul>
+
         </nav>
     </header>
 </th:block>
