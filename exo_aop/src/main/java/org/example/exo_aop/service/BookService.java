@@ -1,6 +1,7 @@
 package org.example.exo_aop.service;
 
 import org.example.exo_aop.annotation.LoggingAnnotation;
+import org.example.exo_aop.annotation.PerformanceAnnotation;
 import org.example.exo_aop.entity.Book;
 import org.springframework.stereotype.Service;
 
@@ -21,28 +22,33 @@ public class BookService {
     }
 
     @LoggingAnnotation
+    @PerformanceAnnotation
     public List<Book> searchBookBySearch(String search){
         return bookList.stream().filter(book -> (book.getName().toLowerCase().contains(search) || book.getAuthor().toLowerCase().contains(search)) && !book.isBorrowed()).toList();
     }
 
     @LoggingAnnotation
+    @PerformanceAnnotation
     public Book getBookById(int id) {
         return bookList.stream().filter(book -> book.getId().equals(id)).findFirst().orElse(null);
     }
 
     @LoggingAnnotation
+    @PerformanceAnnotation
     public String borrowBook(Book book) {
         book.setBorrowed(true);
         return book.toString() + " a été emprunté";
     }
 
     @LoggingAnnotation
+    @PerformanceAnnotation
     public String unBorrowBook(Book book) {
         book.setBorrowed(false);
         return book.toString() + " a été rendu";
     }
 
     @LoggingAnnotation
+    @PerformanceAnnotation
     public List<Book> getall(){
         return bookList;
     }
