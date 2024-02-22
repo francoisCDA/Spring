@@ -1,25 +1,42 @@
 package org.example.exo_aop.entity;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Book {
 
     private static int count = 0;
 
+    @Id
     private Integer id;
 
     private String name;
 
-    private String author;
 
     private int year;
 
     private boolean isBorrowed;
 
-    public Book(String name, String author, int year) {
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
+
+
+
+    public Book(String name, Author author, int year) {
         this.name = name;
         this.author = author;
         this.year = year;
         isBorrowed = false;
         id = ++count;
+    }
+
+    public Book() {
+
     }
 
     public Integer getId() {
@@ -38,11 +55,11 @@ public class Book {
         this.name = name;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
