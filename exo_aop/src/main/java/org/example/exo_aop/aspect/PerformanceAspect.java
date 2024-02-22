@@ -21,11 +21,12 @@ public class PerformanceAspect {
         try{
             long t0 =System.currentTimeMillis();
 
+            String signature = joinPoint.getSignature().toString();
             Object retour = joinPoint.proceed();
 
             long dt = System.currentTimeMillis() - t0;
 
-            System.out.println("temps d'execution de la méthode : " + dt + " ms");
+            System.out.println("temps d'execution de la méthode " + signature  +" : " + dt + " ms");
 
             return retour;
         } catch (Throwable e) {
