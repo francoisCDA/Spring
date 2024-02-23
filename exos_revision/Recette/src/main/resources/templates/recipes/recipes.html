@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Liste de recette</h1>
+
+<h2 th:if="${recipies.isEmpty()}" >Aucune recette trouvée</h2>
+
+<div th:unless="${recipies.isEmpty()}" ></div>
+<ul th:each="re : ${recipies}" >
+    <a th:href="${/recipies/{id}(id = re.id) }"><span th:text="${re.name}"></span> </a>
+
+</ul>
+
+<a th:href="@{/recipies}" >Retour à l'accueil</a>
+
+
+</body>
+</html>
