@@ -13,9 +13,13 @@ import org.springframework.ui.Model;
 @RequestMapping("/recipes")
 public class RecipeController {
 
-    private RecipeService recipeService;
+    private final RecipeService recipeService;
 
-    @GetMapping("/")
+    public RecipeController() {
+        this.recipeService = new RecipeService();
+    }
+
+    @GetMapping
     public String index(Model model){
         model.addAttribute("nbRecipes",recipeService.countRecipes());
         model.addAttribute("recipeDto",new RecipeDTO());
@@ -38,7 +42,7 @@ public class RecipeController {
     @GetMapping("/search")
     public String searchRecipie(@RequestParam String search, Model model){
 
-        model.addAttribute("recipies", recipeService.searchByString());
+        model.addAttribute("recipies", recipeService.searchByString(search));
 
         return "recipies/recipies";
 
@@ -46,7 +50,7 @@ public class RecipeController {
 
     @GetMapping("/search/{id}")
     public String getRecipe(@PathVariable Long id, Model model){
-        model.addAttribute("recipe",recipeService.getRecipesById(id));
+        model.addAttribute("recipe",recipeService.getRecipeById(id));
         return "recipes/details";
     }
 
