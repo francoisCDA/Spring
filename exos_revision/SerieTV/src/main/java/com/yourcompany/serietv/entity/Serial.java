@@ -24,7 +24,7 @@ public class Serial {
 
     private boolean isFinished;
 
-
+    private int season;
 
 
 

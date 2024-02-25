@@ -1,5 +1,6 @@
 package com.yourcompany.serietv.service;
 
+import com.yourcompany.serietv.annotation.BroadcastMailAnnotation;
 import com.yourcompany.serietv.entity.Serial;
 import com.yourcompany.serietv.enumerate.SerialKind;
 import com.yourcompany.serietv.repository.SerialRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +27,20 @@ public class SerialService {
         return serialRepository.save(serial);
     }
 
+    public Serial newSeason(Long seasonId){
+        Optional<Serial> serial = serialRepository.findById(seasonId);
+        if (serial.isPresent()) {
+            return newSeason(serial.get());
+        }
+        throw new RuntimeException("Serie inexistante");
+    }
+
+    @BroadcastMailAnnotation
+    public Serial newSeason(Serial serial){
+        serial.setSeason(serial.getSeason()+1);
+        return putSerial(serial);
+    }
+
     public List<Serial> search(String search) {
         return serialRepository.findSerialByNameIsContainingIgnoreCaseOrSerialKindContainingIgnoreCase(search, SerialKind.find(search));
     }
@@ -40,6 +56,8 @@ public class SerialService {
         }
         return retour;
     }
+
+
 
 
 
