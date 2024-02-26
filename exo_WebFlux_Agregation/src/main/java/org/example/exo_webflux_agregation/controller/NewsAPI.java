@@ -17,13 +17,13 @@ public class NewsAPI {
     private final NewsService newsService;
 
     @GetMapping(value = "flux", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> getWeatherFlux() {
+    public Flux<String> getInfoFlux() {
 
         return Flux.just("grève ", "manifestation ", "charge de CRS ").delayElements(Duration.ofSeconds(2));
     }
 
     @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> getWeather() {
+    public Flux<String> getInfo() {
 
         return newsService.getFlux();
     }
@@ -32,7 +32,7 @@ public class NewsAPI {
     public ResponseEntity<String> postWeather(@RequestParam String news) {
 
         newsService.sendNews(news);
-        return ResponseEntity.ok("info buletin météo " + news);
+        return ResponseEntity.ok("dernière info " + news);
 
     }
 }

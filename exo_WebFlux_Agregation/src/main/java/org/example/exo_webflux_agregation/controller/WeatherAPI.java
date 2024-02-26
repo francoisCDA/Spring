@@ -22,7 +22,7 @@ public class WeatherAPI {
         return Flux.just("pluie ", "soleil ", "pluie ", "neige").delayElements(Duration.ofSeconds(1));
     }
 
-    @GetMapping( MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(  produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> getWeather() {
 
         return weatherService.getFlux();
