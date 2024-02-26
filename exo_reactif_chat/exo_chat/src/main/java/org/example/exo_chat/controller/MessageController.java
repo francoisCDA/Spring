@@ -3,6 +3,7 @@ package org.example.exo_chat.controller;
 
 import org.example.exo_chat.entity.Message;
 import org.example.exo_chat.service.MessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/chat")
 public class MessageController {
 
+    @Autowired
     private MessageService messageService;
 
     @PostMapping("/post")
