@@ -29,17 +29,7 @@
         <input type="text" id="name" th:field="*{name}" />
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></span>
     </div>
-    <div>
-        <label for="ingredient" >liste des ingrédients (séparés par un ';')</label>
-        <textarea id="ingredient"  th:field="*{ingredients}" rows="5" cols="33" ></textarea>
-        <span th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}" ></span>
-    </div>
 
-    <div>
-        <label for="instruction" >liste des instructions</label>
-        <textarea id="instruction"  th:field="*{instructions}" rows="5" cols="33" ></textarea>
-        <span th:if="${#fields.hasErrors('instructions')}" th:errors="*{instructions}" ></span>
-    </div>
 
 
     <button type="submit" >Envoyer</button>
