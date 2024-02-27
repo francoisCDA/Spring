@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/chat")
@@ -24,13 +25,16 @@ public class MessageController {
     public ResponseEntity<String> addMessage(@RequestBody Message message) {
         messageService.post(message);
         messageServiceObj.post(message);
-        return ResponseEntity.ok(message.toString());
+        return ResponseEntity.ok("ok");
     }
 
     @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> subscribeChat() { return messageService.getFLux();}
 
-    @GetMapping(value = "obj",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<Message> subscribeChatObj() { return messageServiceObj.getFLuxObj();}
+    @GetMapping(value = "/obj",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Message> subscribeChatObj() {
+        Flux<Message> retour = messageServiceObj.getFLuxObj();
+        return retour;
+    }
 
 }
