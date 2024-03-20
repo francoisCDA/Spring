@@ -33,7 +33,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().permitAll()
+                        .requestMatchers("/contact","/notices","/register","/login").permitAll()
+                        .requestMatchers("/myAccount","/myLoans","/myCards").hasRole("USER")
+                        .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
+                        .anyRequest().denyAll()
                 )
                 .exceptionHandling(exceptions -> exceptions.authenticationEntryPoint(jwtAuthentificationEntryPoint))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
