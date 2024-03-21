@@ -27,7 +27,6 @@ function ProductList() {
   }
 
   const editProduct = (productToUpdate) => {
-    console.log(productToUpdate);
     navigate("/update",{ state : productToUpdate});
   }
 

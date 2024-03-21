@@ -14,16 +14,16 @@ const FormProduct = (data) => {
 
         try {
           if (newProduct.id == 0) {
-            productService.saveProduct(newProduct.name,newProduct.price);
+            productService.saveProduct(newProduct.name,newProduct.price).then(()=>navigate('/products'));
           } else {
-            productService.updProduct(newProduct);
+            productService.updProduct(newProduct).then(()=>navigate('/products'));
           }
            
         } catch (error)  {
             console.log(error)
-        }
-
-        navigate('/products');
+        } 
+          //navigate('/products');
+        
     }
 
     useEffect( () => {
@@ -32,12 +32,12 @@ const FormProduct = (data) => {
        if (productToUpdate != null ){
         setNewProduct(productToUpdate)
        }
-       console.log(newProduct)
+      // console.log(newProduct)
     },[])
 
     return (
      <>
-        <div className="container">
+    <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card mt-5">

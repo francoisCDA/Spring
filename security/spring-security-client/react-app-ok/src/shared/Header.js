@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { getUserDetails } from '../helpers/user-details';
 import authService from '../services/authService';
 
@@ -55,7 +55,7 @@ const isLoggedIn = () => {
     };
 
     return (
-
+        <>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,6 +100,8 @@ const isLoggedIn = () => {
                 </div>
             </div>
         </nav>
+        <Outlet/>
+       </> 
     );
 };
 
