@@ -163,3 +163,4 @@ CREATE TABLE `contact_messages` (
   PRIMARY KEY (`contact_id`)
 );
 
+select * from customer;

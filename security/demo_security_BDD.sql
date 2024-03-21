@@ -67,6 +67,6 @@ INSERT INTO authorities (username, authority) VALUES ('thomas', 'ROLE_USER');
 
 
 select * from user;
-select * from authorities;
+select * from product;
 
    
