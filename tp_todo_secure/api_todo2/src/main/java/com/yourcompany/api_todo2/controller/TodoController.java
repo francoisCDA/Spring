@@ -3,7 +3,7 @@ package com.yourcompany.api_todo2.controller;
 
 import com.yourcompany.api_todo2.dto.BaseReponseDto;
 import com.yourcompany.api_todo2.dto.NewTodoDto;
-import com.yourcompany.api_todo2.dto.UpdateTodoDto;
+import com.yourcompany.api_todo2.dto.TodoDto;
 import com.yourcompany.api_todo2.model.Todo;
 import com.yourcompany.api_todo2.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/todo")
@@ -20,7 +21,7 @@ public class TodoController {
 
     @GetMapping("/user")
     private BaseReponseDto getAllTodos(){
-        List<Todo> data = todoService.getAll();
+        Map<String, List<TodoDto>> data = todoService.getAll();
 
         return new BaseReponseDto("All todos",data);
     }
@@ -28,7 +29,7 @@ public class TodoController {
     @GetMapping("/admin/{pseudo}") //http://localhost:8090/api/todo/{pseudo}
     private BaseReponseDto getTodoByPseudo(@PathVariable String pseudo) {
 
-        List<Todo> data = todoService.getTodoByPseudo(pseudo);
+        List<TodoDto> data = todoService.getTodoByPseudo(pseudo);
 
         return new BaseReponseDto("TodoList's "+pseudo,data);
     }
@@ -36,16 +37,16 @@ public class TodoController {
     @PostMapping("/admin/{pseudo}")
     private BaseReponseDto postTodo(@PathVariable String pseudo,@RequestBody NewTodoDto newTodoDto){
 
-        Todo data = todoService.saveTodo(pseudo, newTodoDto);
+        TodoDto data = todoService.saveTodo(pseudo, newTodoDto);
 
         return new BaseReponseDto("Todo save ", data);
 
     }
 
     @PutMapping("/admin/{pseudo}")
-    private ResponseEntity<Void> putTodo(@PathVariable String pseudo, @RequestBody UpdateTodoDto updateTodoDto) {
+    private ResponseEntity<Void> putTodo(@PathVariable String pseudo, @RequestBody TodoDto todoDto) {
 
-        if (todoService.updateTodo(pseudo, updateTodoDto)) {
+        if (todoService.updateTodo(pseudo, todoDto)) {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

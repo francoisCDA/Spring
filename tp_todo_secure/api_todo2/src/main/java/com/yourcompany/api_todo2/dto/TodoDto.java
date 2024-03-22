@@ -1,9 +1,15 @@
 package com.yourcompany.api_todo2.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class UpdateTodoDto {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class TodoDto {
 
     private Long id;
 

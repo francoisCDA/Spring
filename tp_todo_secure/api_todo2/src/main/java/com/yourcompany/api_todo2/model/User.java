@@ -17,7 +17,7 @@ import java.util.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user")
+@Table(name = "users")
 @Builder
 public class User implements UserDetails {
 
@@ -32,7 +32,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Todo> todoes = new ArrayList<>();
 
-    @OneToOne(orphanRemoval = true)
+    @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
@@ -69,5 +69,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getRolename(){
+        return role.getRole();
     }
 }

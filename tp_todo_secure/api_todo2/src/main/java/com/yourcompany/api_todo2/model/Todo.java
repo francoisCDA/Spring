@@ -1,5 +1,6 @@
 package com.yourcompany.api_todo2.model;
 
+import com.yourcompany.api_todo2.dto.TodoDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,5 +29,14 @@ public class Todo {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public TodoDto toTodoDto(){
+        return TodoDto.builder()
+                .id(id)
+                .title(title)
+                .description(description)
+                .isCompleted(isCompleted)
+                .build();
+    }
 
 }
