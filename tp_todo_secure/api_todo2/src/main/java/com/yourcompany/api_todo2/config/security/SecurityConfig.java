@@ -59,7 +59,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         // Permettre à tous les utilisateurs d'accéder aux endpoints commençant par "/api/auth/**" sans authentification.
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/todo/**").hasRole("ADMIN")
+                        .requestMatchers("/api/todo/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/todo/user").hasRole("USER")
 
                         // Exiger l'authentification pour toutes les autres requêtes qui n'ont pas été matchées par les règles ci-dessus.
