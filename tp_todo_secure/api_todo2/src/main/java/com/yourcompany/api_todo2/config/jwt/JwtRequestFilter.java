@@ -1,6 +1,7 @@
-package com.example.api_todo.config.jwt;
+package com.yourcompany.api_todo2.config.jwt;
 
-import com.example.api_todo.service.UserService;
+
+import com.yourcompany.api_todo2.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

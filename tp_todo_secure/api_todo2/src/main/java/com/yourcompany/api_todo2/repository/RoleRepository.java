@@ -1,7 +1,7 @@
-package com.example.api_todo.repository;
+package com.yourcompany.api_todo2.repository;
 
-import com.example.api_todo.model.Role;
-import com.example.api_todo.model.Todo;
+
+import com.yourcompany.api_todo2.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

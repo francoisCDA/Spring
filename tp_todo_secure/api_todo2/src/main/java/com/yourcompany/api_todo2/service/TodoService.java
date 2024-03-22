@@ -1,8 +1,15 @@
-package com.example.api_todo.service;
+package com.yourcompany.api_todo2.service;
 
-import com.example.api_todo.model.Todo;
-import com.example.api_todo.repository.TodoRepository;
+
+import com.yourcompany.api_todo2.dto.NewTodoDto;
+import com.yourcompany.api_todo2.dto.UpdateTodoDto;
+import com.yourcompany.api_todo2.model.Todo;
+import com.yourcompany.api_todo2.model.User;
+import com.yourcompany.api_todo2.repository.TodoRepository;
+import com.yourcompany.api_todo2.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,24 +21,68 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
 
-    public Todo saveTodo(Todo todo) {
+    @Autowired
+    private UserRepository userRepository;
+
+    public Todo saveTodo(String pseudo, NewTodoDto newTodoDto) {
+
+        User user = userRepository.findByPseudo(pseudo).orElseThrow(()-> new UsernameNotFoundException("invalid pseudo"));
+
+        Todo todo = Todo.builder()
+                .title(newTodoDto.getTitle())
+                .description(newTodoDto.getDescription())
+                .user(user)
+                .isCompleted(false)
+                .build();
         return todoRepository.save(todo);
+
+
     }
 
     public List<Todo> getAll(){
         return todoRepository.findAll();
     }
 
+    public List<Todo> getTodoByPseudo(String pseudo) {
+        User user = userRepository.findByPseudo(pseudo).orElseThrow(()-> new UsernameNotFoundException("invalid pseudo"));
+        return todoRepository.findTodosByUserIs(user);
+    }
+
     public Optional<Todo> getTodoById(Long id) {
         return todoRepository.findById(id);
     }
 
-    public Todo updateTodo(Todo todo) {
-        return todoRepository.save(todo);
+    public boolean updateTodo(String pseudo, UpdateTodoDto updateTodoDto) {
+
+        Todo todoToUpdate = todoRepository.findById(updateTodoDto.getId()).orElseThrow(()-> new EntityNotFoundException("invalid todo"));
+
+        if (todoToUpdate.getUser().getPseudo().equals(pseudo)) {
+
+            todoToUpdate.setTitle(updateTodoDto.getTitle());
+            todoToUpdate.setDescription(updateTodoDto.getDescription());
+            todoToUpdate.setCompleted(updateTodoDto.getIsCompleted());
+
+            todoRepository.save(todoToUpdate);
+
+            return true;
+
+        }
+
+        return false;
     }
 
-    public void deleteTodo(Long id) {
-        todoRepository.deleteById(id);
+    public boolean deleteTodo(String pseudo, Long id) {
+
+        Todo todoToRemove = todoRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("invalid todo"));
+
+        if (todoToRemove.getUser().getPseudo().equals(pseudo)){
+            todoRepository.deleteById(id);
+            return true;
+        }
+
+        return false;
+
+
     }
 
 }

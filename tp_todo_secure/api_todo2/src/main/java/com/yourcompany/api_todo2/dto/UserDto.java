@@ -1,4 +1,4 @@
-package com.example.api_todo.dto;
+package com.yourcompany.api_todo2.dto;
 
 import lombok.Data;
 

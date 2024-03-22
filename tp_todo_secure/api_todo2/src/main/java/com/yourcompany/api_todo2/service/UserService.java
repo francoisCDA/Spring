@@ -1,11 +1,12 @@
-package com.example.api_todo.service;
+package com.yourcompany.api_todo2.service;
 
-import com.example.api_todo.config.jwt.JwtTokenProvider;
-import com.example.api_todo.dto.UserDto;
-import com.example.api_todo.model.Role;
-import com.example.api_todo.model.User;
-import com.example.api_todo.repository.RoleRepository;
-import com.example.api_todo.repository.UserRepository;
+
+import com.yourcompany.api_todo2.config.jwt.JwtTokenProvider;
+import com.yourcompany.api_todo2.dto.UserDto;
+import com.yourcompany.api_todo2.model.Role;
+import com.yourcompany.api_todo2.model.User;
+import com.yourcompany.api_todo2.repository.RoleRepository;
+import com.yourcompany.api_todo2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;

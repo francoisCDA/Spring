@@ -1,7 +1,8 @@
-package com.example.api_todo.model;
+package com.yourcompany.api_todo2.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "todo")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Todo {
 
     @Id

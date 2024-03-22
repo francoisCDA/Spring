@@ -1,9 +1,10 @@
-package com.example.api_todo.config.security;
+package com.yourcompany.api_todo2.config.security;
 
 
-import com.example.api_todo.config.jwt.JwtAuthenticationEntryPoint;
-import com.example.api_todo.config.jwt.JwtRequestFilter;
-import com.example.api_todo.service.UserService;
+
+import com.yourcompany.api_todo2.config.jwt.JwtAuthenticationEntryPoint;
+import com.yourcompany.api_todo2.config.jwt.JwtRequestFilter;
+import com.yourcompany.api_todo2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -58,6 +59,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         // Permettre à tous les utilisateurs d'accéder aux endpoints commençant par "/api/auth/**" sans authentification.
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/todo/**").hasRole("ADMIN")
+                        .requestMatchers("/api/todo/user").hasRole("USER")
 
                         // Exiger l'authentification pour toutes les autres requêtes qui n'ont pas été matchées par les règles ci-dessus.
                         .anyRequest().authenticated())

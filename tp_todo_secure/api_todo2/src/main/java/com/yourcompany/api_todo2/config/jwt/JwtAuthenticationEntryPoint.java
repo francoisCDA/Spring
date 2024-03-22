@@ -1,4 +1,4 @@
-package com.example.api_todo.config.jwt;
+package com.yourcompany.api_todo2.config.jwt;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

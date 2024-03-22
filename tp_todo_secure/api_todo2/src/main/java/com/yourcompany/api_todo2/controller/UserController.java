@@ -1,9 +1,10 @@
-package com.example.api_todo.controller;
+package com.yourcompany.api_todo2.controller;
 
-import com.example.api_todo.dto.BaseReponseDto;
-import com.example.api_todo.dto.LoginDto;
-import com.example.api_todo.dto.UserDto;
-import com.example.api_todo.service.UserService;
+
+import com.yourcompany.api_todo2.dto.BaseReponseDto;
+import com.yourcompany.api_todo2.dto.LoginDto;
+import com.yourcompany.api_todo2.dto.UserDto;
+import com.yourcompany.api_todo2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/register")
+    @PostMapping("/register") //http://localhost:8090/api/auth/register
     public BaseReponseDto registerUser(@RequestBody UserDto userDto) {
 
         try {
@@ -32,7 +33,7 @@ public class UserController {
         return new BaseReponseDto("failed");
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login") //http://localhost:8090/api/auth/login
     public BaseReponseDto login(@RequestBody LoginDto loginDto) {
 
         if (userService.checkUserPseudoExists(loginDto.getPseudo())) {

@@ -1,4 +1,4 @@
-package com.example.api_todo.model;
+package com.yourcompany.api_todo2.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

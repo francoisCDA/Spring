@@ -1,4 +1,4 @@
-package com.example.api_todo.model;
+package com.yourcompany.api_todo2.model;
 
 
 import jakarta.persistence.*;
@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 @Entity
 @Data
