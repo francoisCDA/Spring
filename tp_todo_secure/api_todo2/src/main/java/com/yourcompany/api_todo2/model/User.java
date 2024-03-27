@@ -74,4 +74,14 @@ public class User implements UserDetails {
     public String getRolename(){
         return role.getRole();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", pseudo='" + pseudo + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", role=" + role.getRole() +
+                '}';
+    }
 }

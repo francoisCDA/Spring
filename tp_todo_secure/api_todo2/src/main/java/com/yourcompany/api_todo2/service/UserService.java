@@ -56,16 +56,16 @@ public class UserService implements UserDetailsService {
                 .role(role)
                 .build();
 
-       userRepository.save(newUser);
+        userRepository.save(newUser);
 
-       return true;
+        return true;
 
     }
 
-    public boolean verifyUser(String pseudo, String password){
+    public boolean verifyUser(String pseudo, String password) {
 
         return userRepository.findByPseudo(pseudo)
-                .map(user -> passwordEncoder.matches(password,user.getPassword()))
+                .map(user -> passwordEncoder.matches(password, user.getPassword()))
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid Id"));
 
     }
@@ -76,11 +76,10 @@ public class UserService implements UserDetailsService {
 
 
     public String generateToken(String pseudo, String password) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(pseudo,password));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(pseudo, password));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return tokenProvider.generateToken(authentication);
     }
 
-
-
 }
+

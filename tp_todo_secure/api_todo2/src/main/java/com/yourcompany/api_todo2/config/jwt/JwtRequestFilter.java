@@ -39,6 +39,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+  //      System.out.println(request.toString());
+
         try {
             // Extraire le JWT de la requête HTTP
             String token = getJWTFromRequest(request);
@@ -80,7 +82,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // Vérifie si le token est non null et commence bien par "Bearer "
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             // Extraire le token JWT sans le préfixe "Bearer "
-            return bearerToken.substring(7);
+           String token = bearerToken.substring(7);
+           // System.out.printf(token+"<<<\n");
+           return token;
         }
         return null; // Retourner null si le token n'est pas présent ou mal formaté
     }

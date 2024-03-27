@@ -31,7 +31,7 @@ public class TodoController {
 
         List<TodoDto> data = todoService.getTodoByPseudo(pseudo);
 
-        return new BaseReponseDto("TodoList's "+pseudo,data);
+        return new BaseReponseDto(pseudo + "'s TodoList",data);
     }
 
     @PostMapping("/admin/{pseudo}")

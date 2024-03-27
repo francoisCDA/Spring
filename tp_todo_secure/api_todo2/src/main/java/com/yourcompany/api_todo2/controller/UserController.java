@@ -4,6 +4,7 @@ package com.yourcompany.api_todo2.controller;
 import com.yourcompany.api_todo2.dto.BaseReponseDto;
 import com.yourcompany.api_todo2.dto.LoginDto;
 import com.yourcompany.api_todo2.dto.UserDto;
+import com.yourcompany.api_todo2.model.User;
 import com.yourcompany.api_todo2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,11 +39,17 @@ public class UserController {
 
         if (userService.checkUserPseudoExists(loginDto.getPseudo())) {
             if (userService.verifyUser(loginDto.getPseudo(), loginDto.getPwd())) {
+
+                User user = (User) userService.loadUserByUsername(loginDto.getPseudo());
+
                 Map<String, Object> data = new HashMap<>();
 
                 data.put("token", userService.generateToken(loginDto.getPseudo(), loginDto.getPwd()));
 
-                data.put("pseudo", loginDto.getPseudo());
+                data.put("pseudo", user.getPseudo());
+
+                data.put("role", user.getRolename().substring(5));
+
 
                 return new BaseReponseDto("Success", data);
 
