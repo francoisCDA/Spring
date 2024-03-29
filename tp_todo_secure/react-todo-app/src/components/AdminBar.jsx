@@ -21,7 +21,7 @@ const AdminBar = ({context}) => {
         <button onClick={logout}>Logout</button>
         {context.userInfo.role == "ADMIN" && 
             <>
-                <button onClick={() => navigate(`/${context.userInfo.user}/todos`)}>Mes Todos {`/${context.userInfo.user}/todos`}</button>
+                <button onClick={() => navigate(`/${context.userInfo.user}/todos`)}>Mes Todos</button>
                 <button onClick={() => navigate(`/${context.userInfo.user}/todos/add`)}>New Todo</button>
             </>
         }
