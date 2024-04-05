@@ -12,9 +12,7 @@ const AdminTodos = () => {
     const axiosTodo = async () =>{
       try {
         const adminTodos = await todoService.getAdminTodo(user,token);
-
-      //console.log(adminTodos.data); 
-
+        
       if (Array.isArray(adminTodos.data)) {
         setTodoList(adminTodos.data);
       }

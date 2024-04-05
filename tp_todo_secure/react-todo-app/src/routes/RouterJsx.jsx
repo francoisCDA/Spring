@@ -20,12 +20,17 @@ const RouterJsx = createBrowserRouter (
                     index:true
                 },
                 {
-                    path:"/login",
-                    element:<Login2 />
-                },
-                {
-                    path:"/register",
-                    element:<Register2 />
+                    element: <ProtectedRoute role={null} />,
+                    children:[                        
+                        {
+                            path:"/login",
+                            element:<Login2 />
+                        },
+                        {
+                            path:"/register",
+                            element:<Register2 />
+                        }
+                    ]
                 },
                 {
                     element: <ProtectedRoute role="ADMIN" />,
