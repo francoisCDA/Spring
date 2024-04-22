@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import authService from '../services/authService';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 
 const Login2 = () => {
   const context = useOutletContext();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -22,12 +23,15 @@ const Login2 = () => {
     
     authService.login(formData.username,formData.password).then( (resp)=> {
       if (resp.message == "Success") {
+        console.log(resp.data)
  
         context.setUserInfo({
           user:resp.data.pseudo,
           token:resp.data.token,
           role:resp.data.role
         })
+
+        navigate("/")
 
       }
     });    

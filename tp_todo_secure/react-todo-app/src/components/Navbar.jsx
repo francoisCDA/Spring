@@ -19,11 +19,15 @@ const Navbar = () => {
     <>
     <header>
       <nav>
-        <p>test</p>
-        <button onClick={() => navigate("/login")}>Login</button>
-        <button onClick={() => navigate("/register")}>Register</button>
         {
-          userInfo.user != null && <AdminBar context={{userInfo,setUserInfo}} />
+         userInfo.user != null ? 
+            <AdminBar context={{userInfo,setUserInfo}} />
+         :
+            <>
+              <span>Welcome </span>
+              <button onClick={() => navigate("/login")}>Login</button>
+              <button onClick={() => navigate("/register")}>Register</button>
+            </>
         }
       </nav>
     </header>

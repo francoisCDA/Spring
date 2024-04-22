@@ -3,12 +3,12 @@ import { Navigate, Outlet, useOutletContext } from 'react-router-dom'
 
 const ProtectedRoute = ({role}) => {
 
-    const {userInfo} = useOutletContext()
+    const {userInfo,setUserInfo} = useOutletContext()
 
     if (userInfo.role == role) {
         //console.log("controle OK");
         //console.log(userInfo);
-        return <Outlet context={userInfo}/>
+        return <Outlet context={{userInfo,setUserInfo}}/>
     }
 
     
