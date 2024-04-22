@@ -8,3 +8,5 @@ INSERT INTO role (id,role) values (2,"ROLE_USER") ;
 INSERT INTO role (id,role) values (3,"ROLE_TEST") ;
 
 select * FROM users;
+
+select * FROM role;

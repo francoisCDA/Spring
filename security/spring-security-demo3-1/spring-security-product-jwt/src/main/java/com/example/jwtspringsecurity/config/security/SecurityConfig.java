@@ -1,10 +1,13 @@
-package com.yourcompany.api_todo2.config.security;
+package com.example.jwtspringsecurity.config.security;
 
+import com.example.jwtspringsecurity.config.jwt.JwtAuthenticationEntryPoint;
+import com.example.jwtspringsecurity.config.jwt.JwtRequestFilter;
+import com.example.jwtspringsecurity.service.UserService;
 
+import java.beans.Customizer;
+import java.util.Arrays;
+import java.util.Collections;
 
-import com.yourcompany.api_todo2.config.jwt.JwtAuthenticationEntryPoint;
-import com.yourcompany.api_todo2.config.jwt.JwtRequestFilter;
-import com.yourcompany.api_todo2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +15,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,19 +25,17 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-import java.util.Collections;
 
-
+// Classe de configuration pour la sécurité de l'application.
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-
+    // Injection des dépendances pour le service utilisateur et le point d'entrée d'authentification JWT.
     private final UserService userService;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-
+    // Constructeur pour initialiser les services injectés.
     public SecurityConfig(UserService userService, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
         this.userService = userService;
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
@@ -58,8 +60,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         // Permettre à tous les utilisateurs d'accéder aux endpoints commençant par "/api/auth/**" sans authentification.
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/todo/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/todo/user").hasRole("USER")
 
                         // Exiger l'authentification pour toutes les autres requêtes qui n'ont pas été matchées par les règles ci-dessus.
                         .anyRequest().authenticated())

@@ -76,7 +76,8 @@ public class UserService implements UserDetailsService {
 
 
     public String generateToken(String pseudo, String password) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(pseudo, password));
+        Authentication authentication1 = new UsernamePasswordAuthenticationToken(pseudo, password);
+        Authentication authentication = authenticationManager.authenticate(authentication1);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return tokenProvider.generateToken(authentication);
     }
